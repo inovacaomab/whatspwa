@@ -21,43 +21,56 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Arquivos em cache durante a instalação: ', urlsToCache);
-        return cache.addAll(urlsToCache);
+        console.log('Cache inicial criado');
+        return cache.addAll(urlsToCache).catch(error => {
+          console.error('Erro ao cachear arquivos:', error);
+        });
       })
   );
+  self.skipWaiting();
 });
 
-// Evento de fetch - Servir do cache, ou fazer fetch da rede
+// Evento de fetch - Estratégia Cache First
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Retorna o recurso em cache, ou faz uma requisição à rede
-        return response || fetch(event.request).then(fetchResponse => {
+        if (response) {
+          return response; // Cache hit
+        }
+        
+        return fetch(event.request).then(fetchResponse => {
+          // Não cachear respostas com erro
+          if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
+            return fetchResponse;
+          }
+
           return caches.open(CACHE_NAME).then(cache => {
-            // Clona a resposta e armazena no cache para futuras requisições
             cache.put(event.request, fetchResponse.clone());
             return fetchResponse;
           });
+        }).catch(() => {
+          // Retornar uma resposta offline personalizada se necessário
+          return new Response('Offline - Conteúdo não disponível');
         });
       })
   );
 });
 
-// Evento de ativação - Limpeza de caches antigos, se houver
+// Evento de ativação - Limpeza de caches antigos
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (!cacheWhitelist.includes(cacheName)) {
-            // Remove caches antigos que não estão na lista atual
-            console.log('Removendo cache antigo: ', cacheName);
+          if (cacheName !== CACHE_NAME) {
+            console.log('Removendo cache antigo:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
+    }).then(() => {
+      return self.clients.claim();
     })
   );
 });

@@ -2,7 +2,7 @@
   "name": "What's Go",
   "short_name": "What's Go",
   "description": "Simplifique o acesso ao seu app de mensagens com o What's Go!",
-  "start_url": "/",
+  "start_url": "https://www.whatsgo.app.br/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#25D366",

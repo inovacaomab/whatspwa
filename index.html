@@ -1,131 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6742040663921517"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What's Go APP</title>
-    <meta name="description" content="What's Go APP - Acesse facilmente seu APP de mensagens.">
-    <meta name="keywords" content="What's Go, Inovação MAB, WhatsApp, Comunicação, Simples, Funcional">
-    <meta name="author" content="Inovação MAB">
-    <meta property="og:title" content="What's Go APP"/>
-    <meta property="og:description" content="Simplifique o acesso ao seu app de mensagens com What's Go!"/>
-    <meta property="og:image" content="https://example.com/thumbnail.jpg"/>
-    <meta property="og:url" content="https://www.inovacaomab.com/whatsgoapp">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YQTBMJMDF"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-0YQTBMJMDF');
-    </script>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6742040663921517"
-     crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="iconezinho.ico">
-    <!-- PWA related tags -->
-    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#25D366">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="What's Go">
+    <meta name="description" content="Simplifique o acesso ao seu app de mensagens com o What's Go!">
+    
+    <!-- Manifest e ícones -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    
+    <!-- Ícones iOS -->
+    <link rel="apple-touch-icon" sizes="72x72" href="icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="icon-384x384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
+    
+    <!-- Tela de splash para iOS -->
+    <link rel="apple-touch-startup-image" href="icon-512x512.png">
+    
+    <title>What's Go</title>
+    
+    <!-- Seus estilos CSS aqui -->
 </head>
 <body>
     <div class="container">
         <img src="iconeprincipal.jpg" alt="What's Go Logo" id="logo">
+
         <h1 id="appName">What's Go</h1>
-        <input type="tel" id="phoneNumber" placeholder="(xx) xxxxx-xxxx">
-        <textarea id="messageText" placeholder="Digite sua mensagem aqui..."></textarea>
-        <button onclick="openWhatsApp()">Iniciar Chat</button>
-        <br><br><br><br>
+
+        <button id="startChat">Iniciar Chat</button>
+
         <div class="bottom-icons">
-            <b id="developed">Crie seu QR CODE Gratuitamente:</b><br>
-            <br>
+            <p><strong>Crie seu QR CODE Gratuitamente:</strong></p>
             <a href="https://www.whatsgo.app.br/qrgene_free/index_jquery.html" target="_blank">
-            <img src="qricon.jpg" alt="Gere seu QR CODE Gratuitamente" id="logo" onclick="Gere seu QR CODE Gratuitamente" title="Gere seu QR CODE Gratuitamente!"></a><br>
-            <p><span style="color: #d3d3d3;">*melhor desempenho no Google Chrome</p>
+                <img src="qricon.jpg" alt="Gere seu QR CODE Gratuitamente" id="logo" 
+                     title="Gere seu QR CODE Gratuitamente!">
+            </a>
+            <p><small>*melhor desempenho no Google Chrome</small></p>
         </div>
-        <br><br><br><br>
-        <footer>
-            <p id="developed">Desenvolvido por Inovação MAB <br>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/whats_go_app" target="_blank" onclick="trackSocialClick('Instagram')" title="Siga nossa bio!"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/@whatsgoapp" target="_blank" onclick="trackSocialClick('YouTube')" title="Se inscreva agora mesmo!"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.linkedin.com/company/inovacao-mab/" target="_blank" onclick="trackSocialClick('LinkedIn')" title="Siga nossa page!"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://whatsapp.com/channel/0029Va5uO93FcowAHRjvWP0k" target="_blank" onclick="trackSocialClick('WhatsApp')" title="Participe do Canal!"><i class="fab fa-whatsapp"></i></a> <br>
-                    <br>
-                    <a href="https://play.google.com/store/apps/details?id=com.inovacaomab.whatsgo" target="_blank" onclick="trackSocialClick('Instale o APP da Play Store')" title="Instale o APP para ANDROID!"><i class="fab fa-google-play"></i></a>
-                </div>
-            </p>
-            <!-- Novo botão para instalar PWA -->
-            <button id="installPWA" style="display: none;">Instalar App</button>
-            <p id="glory">A DEUS toda a Glória!</p>
-        </footer>
+
+        <p>Desenvolvido por Inovação MAB</p>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/whats_go_app" target="_blank" 
+               onclick="trackSocialClick('Instagram')" title="Siga nossa bio!"></a>
+            <a href="https://www.youtube.com/@whatsgoapp" target="_blank" 
+               onclick="trackSocialClick('YouTube')" title="Se inscreva agora mesmo!"></a>
+            <a href="https://www.linkedin.com/company/inovacao-mab/" target="_blank" 
+               onclick="trackSocialClick('LinkedIn')" title="Siga nossa page!"></a>
+            <a href="https://whatsapp.com/channel/0029Va5uO93FcowAHRjvWP0k" target="_blank" 
+               onclick="trackSocialClick('WhatsApp')" title="Participe do Canal!"></a>
+            <a href="https://play.google.com/store/apps/details?id=com.inovacaomab.whatsgo" target="_blank" 
+               onclick="trackSocialClick('Instale o APP da Play Store')" title="Instale o APP para ANDROID!"></a>
+        </div>
+
+        <!-- Botões de instalação -->
+        <button id="install-button" style="display: none;">Instalar App</button>
+        <div id="install-ios" style="display: none;">
+            <p>Para instalar o app no iOS:</p>
+            <ol>
+                <li>Toque no ícone de compartilhar</li>
+                <li>Role para baixo e toque em "Adicionar à Tela Inicial"</li>
+            </ol>
+        </div>
+
+        <p>A DEUS toda a Glória!</p>
     </div>
+
+    <!-- Scripts -->
+    <script src="app.js" defer></script>
+    
+    <!-- Verificação offline -->
     <script>
-        function trackSocialClick(serviceName) {
-            gtag('event', 'click', {
-                'event_category': 'Social Media',
-                'event_label': serviceName
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var phoneNumberInput = document.querySelector('#phoneNumber');
-            var iti = window.intlTelInput(phoneNumberInput, {
-                initialCountry: 'br',
-                preferredCountries: ['br', 'us'],
-                separateDialCode: true,
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
-            });
-
-            window.openWhatsApp = function() {
-                var message = encodeURIComponent(document.querySelector('#messageText').value);
-                var phoneNumber = phoneNumberInput.value.replace(/\D/g,'');
-                var countryData = iti.getSelectedCountryData();
-                var dialCode = countryData.dialCode;
-                phoneNumber = '+' + dialCode + phoneNumber;
-                if (phoneNumber) {
-                    var url = `https://wa.me/${phoneNumber}`;
-                    if (message) {
-                        url += `?text=${message}`;
-                    }
-                    window.open(url, '_blank');
-                    gtag('event', 'click', {
-                        'event_category': 'WhatsApp Chat',
-                        'event_label': 'Initiate Chat',
-                        'value': phoneNumber
-                    });
-                } else {
-                    alert('Por favor, insira um número de telefone.');
+        window.addEventListener('load', function() {
+            function updateOnlineStatus() {
+                if (!navigator.onLine) {
+                    alert('Você está offline. Algumas funcionalidades podem estar indisponíveis.');
                 }
             }
 
-            // PWA installation logic
-            let deferredPrompt;
-            const installButton = document.getElementById('installPWA');
-
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                installButton.style.display = 'block';
-            });
-
-            installButton.addEventListener('click', (e) => {
-                installButton.style.display = 'none';
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the A2HS prompt');
-                    } else {
-                        console.log('User dismissed the A2HS prompt');
-                    }
-                    deferredPrompt = null;
-                });
-            });
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
         });
     </script>
 </body>

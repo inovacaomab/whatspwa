@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inovação MAB - QR CODE Gratuito</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .tool-container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        .tool-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+            position: relative;
+        }
+        .input-section input {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .input-section .clear-input {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+            display: none;
+            font-size: 16px;
+            color: #999;
+        }
+        .input-section input:hover + .clear-input,
+        .input-section .clear-input:hover {
+            display: block;
+        }
+        .input-section button {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            background-color: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        .input-section button:hover {
+            background-color: darkgreen;
+        }
+        .qrcode-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+        .qrcode-section button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            box-sizing: border-box;
+        }
+        .qrcode-section button:hover {
+            background-color: #c82333;
+        }
+        #downloadLink {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        #downloadLink:hover {
+            background-color: darkgreen;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .bottom-icons {
+            border: 2px solid black;
+            padding: 10px;
+            border-color: blue;
+        }
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inovação MAB - QR CODE Gratuito</h1>
+    <div class="tool-container">
+        <h1>Crie seu QR Code aqui</h1>
+        <div class="input-section">
+            <input type="text" id="url" placeholder="Digite ou cole o LINK aqui">
+            <span class="clear-input" onclick="$('#url').val(''); $(this).hide();">x</span>
+            <button id="generateButton">Gerar QR Code</button>
+        </div>
+        <div class="qrcode-section">
+            <div id="qrcode"></div>
+            <a id="downloadLink" href="#" onclick="baixarQRCode()">Baixar QR Code</a>
+            <button id="clearButton">Apagar e Gerar Novo</button>
+        </div>
+    </div>
+    <footer>
+        <p>Obrigado por utilizar nosso serviço, DEUS abençoe!<br>
+        Desenvolvido por <a href="https://www.inovacaomab.com" target="_blank">Inovação MAB</a></p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $('#generateButton').click(function() {
+                gerarQRCode();
+            });
+
+            $('#url').keypress(function(event) {
+                if (event.key === 'Enter') {
+                    gerarQRCode();
+                }
+            });
+
+            $('#clearButton').click(function() {
+                limparQRCode();
+            });
+
+            $('#url').on('input', function() {
+                if ($(this).val()) {
+                    $('.clear-input').show();
+                } else {
+                    $('.clear-input').hide();
+                }
+            });
+        });
+
+        function gerarQRCode() {
+            var url = $('#url').val();
+            if (url) {
+                limparQRCode();
+                new QRCode(document.getElementById("qrcode"), {
+                    text: url,
+                    width: 128,
+                    height: 128
+                });
+                $('#clearButton').show();
+                $('#downloadLink').show();
+            } else {
+                alert("Por favor, insira um URL válido.");
+            }
+        }
+
+        function limparQRCode() {
+            $('#qrcode').empty();
+            $('#clearButton').hide();
+            $('#downloadLink').hide();
+        }
+
+        function baixarQRCode() {
+            var canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'qrcode.png';
+                link.click();
+            }
+        }
+    </script>
+    <a href="https://www.whatsgo.app.br" class="home-button">Voltar ao What's Go</a>
+</body>
+</html>

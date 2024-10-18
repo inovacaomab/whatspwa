@@ -1,0 +1,15 @@
+{
+  "name": "What's Go",
+  "short_name": "What's Go",
+  "start_url": "https://www.whatsgo.app.br/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#25D366",
+  "icons": [
+    {
+      "src": "iconeprincipal.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}

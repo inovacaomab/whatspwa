@@ -9,12 +9,10 @@
     <meta name="apple-mobile-web-app-title" content="What's Go">
     <meta name="description" content="Simplifique o acesso ao seu app de mensagens com o What's Go!">
     
-    <!-- Manifest e ícones -->
+    <!-- PWA tags -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
     <link rel="apple-touch-icon" href="icon-192x192.png">
-    
-    <!-- Ícones iOS -->
     <link rel="apple-touch-icon" sizes="72x72" href="icon-72x72.png">
     <link rel="apple-touch-icon" sizes="96x96" href="icon-96x96.png">
     <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
@@ -23,74 +21,125 @@
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192x192.png">
     <link rel="apple-touch-icon" sizes="384x384" href="icon-384x384.png">
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
-    
-    <!-- Tela de splash para iOS -->
-    <link rel="apple-touch-startup-image" href="icon-512x512.png">
+
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #logo {
+            max-width: 200px;
+            margin: 20px auto;
+            display: block;
+        }
+        .bottom-icons {
+            margin: 30px 0;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        #install-button {
+            padding: 10px 20px;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        #install-ios {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
     
     <title>What's Go</title>
-    
-    <!-- Seus estilos CSS aqui -->
 </head>
 <body>
-    <div class="container">
-        <img src="iconeprincipal.jpg" alt="What's Go Logo" id="logo">
 
-        <h1 id="appName">What's Go</h1>
+<div class="container">
+    <img src="iconeprincipal.jpg" id="logo" alt="What's Go Logo">
 
-        <button id="startChat">Iniciar Chat</button>
+    <h1 id="appName">What's Go</h1>
 
-        <div class="bottom-icons">
-            <p><strong>Crie seu QR CODE Gratuitamente:</strong></p>
-            <a href="https://www.whatsgo.app.br/qrgene_free/index_jquery.html" target="_blank">
-                <img src="qricon.jpg" alt="Gere seu QR CODE Gratuitamente" id="logo" 
-                     title="Gere seu QR CODE Gratuitamente!">
-            </a>
-            <p><small>*melhor desempenho no Google Chrome</small></p>
-        </div>
+    <button onclick="iniciarchat()">Iniciar Chat</button>
 
-        <p>Desenvolvido por Inovação MAB</p>
-
-        <div class="social-links">
-            <a href="https://www.instagram.com/whats_go_app" target="_blank" 
-               onclick="trackSocialClick('Instagram')" title="Siga nossa bio!"></a>
-            <a href="https://www.youtube.com/@whatsgoapp" target="_blank" 
-               onclick="trackSocialClick('YouTube')" title="Se inscreva agora mesmo!"></a>
-            <a href="https://www.linkedin.com/company/inovacao-mab/" target="_blank" 
-               onclick="trackSocialClick('LinkedIn')" title="Siga nossa page!"></a>
-            <a href="https://whatsapp.com/channel/0029Va5uO93FcowAHRjvWP0k" target="_blank" 
-               onclick="trackSocialClick('WhatsApp')" title="Participe do Canal!"></a>
-            <a href="https://play.google.com/store/apps/details?id=com.inovacaomab.whatsgo" target="_blank" 
-               onclick="trackSocialClick('Instale o APP da Play Store')" title="Instale o APP para ANDROID!"></a>
-        </div>
-
-        <!-- Botões de instalação -->
-        <button id="install-button" style="display: none;">Instalar App</button>
-        <div id="install-ios" style="display: none;">
-            <p>Para instalar o app no iOS:</p>
-            <ol>
-                <li>Toque no ícone de compartilhar</li>
-                <li>Role para baixo e toque em "Adicionar à Tela Inicial"</li>
-            </ol>
-        </div>
-
-        <p>A DEUS toda a Glória!</p>
+    <div class="bottom-icons">
+        <p><strong>Crie seu QR CODE Gratuitamente:</strong></p>
+        <a href="https://www.whatsgo.app.br/qrgene_free/index_jquery.html" target="_blank">
+            <img src="qricon.jpg" id="logo" alt="Gere seu QR CODE Gratuitamente" 
+                 title="Gere seu QR CODE Gratuitamente!">
+        </a>
+        <p><small>*melhor desempenho no Google Chrome</small></p>
     </div>
 
-    <!-- Scripts -->
-    <script src="app.js" defer></script>
-    
-    <!-- Verificação offline -->
-    <script>
-        window.addEventListener('load', function() {
-            function updateOnlineStatus() {
-                if (!navigator.onLine) {
-                    alert('Você está offline. Algumas funcionalidades podem estar indisponíveis.');
-                }
-            }
+    <p>Desenvolvido por Inovação MAB</p>
 
-            window.addEventListener('online', updateOnlineStatus);
-            window.addEventListener('offline', updateOnlineStatus);
-        });
-    </script>
+    <div class="social-links">
+        <a href="https://www.instagram.com/whats_go_app" target="_blank" 
+           onclick="trackSocialClick('Instagram')" title="Siga nossa bio!">
+            <img src="instagram-icon.png" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/@whatsgoapp" target="_blank" 
+           onclick="trackSocialClick('YouTube')" title="Se inscreva agora mesmo!">
+            <img src="youtube-icon.png" alt="YouTube">
+        </a>
+        <a href="https://www.linkedin.com/company/inovacao-mab/" target="_blank" 
+           onclick="trackSocialClick('LinkedIn')" title="Siga nossa page!">
+            <img src="linkedin-icon.png" alt="LinkedIn">
+        </a>
+        <a href="https://whatsapp.com/channel/0029Va5uO93FcowAHRjvWP0k" target="_blank" 
+           onclick="trackSocialClick('WhatsApp')" title="Participe do Canal!">
+            <img src="whatsapp-icon.png" alt="WhatsApp">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.inovacaomab.whatsgo" target="_blank" 
+           onclick="trackSocialClick('Instale o APP da Play Store')" title="Instale o APP para ANDROID!">
+            <img src="playstore-icon.png" alt="Play Store">
+        </a>
+    </div>
+
+    <!-- Botões de instalação PWA -->
+    <button id="install-button" style="display: none;">Instalar App</button>
+    <div id="install-ios" style="display: none;">
+        <p>Para instalar o What's Go no seu iPhone:</p>
+        <ol>
+            <li>Toque no ícone de compartilhar</li>
+            <li>Role para baixo e toque em "Adicionar à Tela Inicial"</li>
+        </ol>
+    </div>
+
+    <p>A DEUS toda a Glória!</p>
+</div>
+
+<!-- Scripts -->
+<script>
+    // Função para iniciar chat
+    function iniciarchat() {
+        // Sua lógica de início de chat aqui
+    }
+
+    // Função para rastrear cliques sociais
+    function trackSocialClick(network) {
+        console.log(`Clique em rede social: ${network}`);
+        // Sua lógica de rastreamento aqui
+    }
+
+    // Verificação de status online/offline
+    window.addEventListener('load', function() {
+        function updateOnlineStatus() {
+            if (!navigator.onLine) {
+                alert('Você está offline. Algumas funcionalidades podem estar indisponíveis.');
+            }
+        }
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+    });
+</script>
+<script src="app.js" defer></script>
+
 </body>
 </html>
